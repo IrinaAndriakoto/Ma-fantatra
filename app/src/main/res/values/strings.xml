@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Ma-fantatra</string>
+    <string name="nav_procedures">Démarches</string>
+    <string name="nav_directory">Fokontany</string>
+    <string name="search_hint">Rechercher une démarche…</string>
+    <string name="filter_all">Toutes</string>
+    <string name="empty_results">Aucune démarche ne correspond à votre recherche.</string>
+    <string name="cost_label">Coût</string>
+    <string name="processing_time_label">Délai de délivrance</string>
+    <string name="pieces_required_title">Pièces requises</string>
+    <string name="pieces_progress">%1$d / %2$d pièces réunies</string>
+    <string name="mandatory_badge">Obligatoire</string>
+    <string name="optional_badge">Facultatif</string>
+    <string name="procedure_steps_title">Procédure au guichet</string>
+    <string name="directory_empty">Aucun fokontany disponible.</string>
+    <string name="address_label">Adresse</string>
+    <string name="opening_hours_label">Heures d\'ouverture</string>
+    <string name="back">Retour</string>
 </resources>
