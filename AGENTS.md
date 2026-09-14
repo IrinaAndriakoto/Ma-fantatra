@@ -22,7 +22,7 @@ Android app **Ma-fantatra** — single module `:app`, Jetpack Compose + Material
 ## Data pipeline (offline-first)
 
 - Room DB is pre-populated with seed data on first install via `createFromAsset("ma_fantatra.db")` → file `app/src/main/assets/databases/ma_fantatra.db`.
-- The asset DB is **generated** from `tools/build_db.py` (Python) using the Room schema JSON exported at `app/schemas/`. Seed rows (procedures, document requirements, fokontany) live in the script.
+- The asset DB is **generated** from `tools/build_db.py` (Python) using the Room schema JSON exported at `app/schemas/`. Seed rows (procedures, document requirements, fokontany, communes) live in the script. The script always uses the **highest-version** schema JSON so that the asset matches the current Room DB (currently v2).
 - **Backend API** (FastAPI, Python) in `backend/` is the source of truth. The app syncs data from it at startup (in ViewModel `init`) and via periodic WorkManager sync (every 6h when network is available).
 - Room serves as the **offline cache**: repositories read from Room (Flow), and refresh from the API when possible. If offline, the cache is used as-is.
 - Base URL for Retrofit: `http://10.0.2.2:8000/` (emulator localhost). Change for real device testing.

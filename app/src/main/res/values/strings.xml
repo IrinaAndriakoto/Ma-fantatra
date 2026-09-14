@@ -2,6 +2,7 @@
     <string name="app_name">Ma-fantatra</string>
     <string name="nav_procedures">Démarches</string>
     <string name="nav_directory">Fokontany</string>
+    <string name="nav_communes">Communes</string>
     <string name="search_hint">Rechercher une démarche…</string>
     <string name="filter_all">Toutes</string>
     <string name="empty_results">Aucune démarche ne correspond à votre recherche.</string>
@@ -13,6 +14,7 @@
     <string name="optional_badge">Facultatif</string>
     <string name="procedure_steps_title">Procédure au guichet</string>
     <string name="directory_empty">Aucun fokontany disponible.</string>
+    <string name="communes_empty">Aucune commune disponible.</string>
     <string name="address_label">Adresse</string>
     <string name="opening_hours_label">Heures d\'ouverture</string>
     <string name="back">Retour</string>

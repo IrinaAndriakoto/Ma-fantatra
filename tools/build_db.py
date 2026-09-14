@@ -143,6 +143,57 @@ DOCUMENT_REQUIREMENTS = [
     {"id": 34, "procedureId": 8, "title": "Livret de famille", "isMandatory": False, "note": None},
 ]
 
+COMMUNES = [
+    # District Antananarivo-Renivohitra
+    {"id": 1, "name": "Antananarivo-Renivohitra", "districtName": "Antananarivo-Renivohitra", "regionName": "Analamanga", "latitude": -18.9076, "longitude": 47.5367},
+    # District Antananarivo-Atsimondrano (26 communes)
+    {"id": 2, "name": "Alakamisy Fenoarivo", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9839, "longitude": 47.4967},
+    {"id": 3, "name": "Alatsinainy Ambazaha", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9389, "longitude": 47.5564},
+    {"id": 4, "name": "Ambalavao", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9303, "longitude": 47.4931},
+    {"id": 5, "name": "Ambatofahavalo", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9333, "longitude": 47.4552},
+    {"id": 6, "name": "Ambavahaditokana", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9772, "longitude": 47.5325},
+    {"id": 7, "name": "Ambohidrapeto", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9219, "longitude": 47.4189},
+    {"id": 8, "name": "Ambohijanaka", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9339, "longitude": 47.5339},
+    {"id": 9, "name": "Ampahitrosy", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": None, "longitude": None},
+    {"id": 10, "name": "Ampanefy", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": None, "longitude": None},
+    {"id": 11, "name": "Ampitatafika", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9386, "longitude": 47.5417},
+    {"id": 12, "name": "Andoharanofotsy", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9547, "longitude": 47.5261},
+    {"id": 13, "name": "Andranonahoatra", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9381, "longitude": 47.4425},
+    {"id": 14, "name": "Androhibe Antsahadinta", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9839, "longitude": 47.4628},
+    {"id": 15, "name": "Ankadimanga", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.8961, "longitude": 47.5628},
+    {"id": 16, "name": "Ankaraobato", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9231, "longitude": 47.4664},
+    {"id": 17, "name": "Anosizato Andrefana", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9047, "longitude": 47.5022},
+    {"id": 18, "name": "Antanetikely", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": None, "longitude": None},
+    {"id": 19, "name": "Bemasoandro", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9736, "longitude": 47.5336},
+    {"id": 20, "name": "Bongatsara", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": None, "longitude": None},
+    {"id": 21, "name": "Fenoarivo", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9589, "longitude": 47.5389},
+    {"id": 22, "name": "Fiombonana", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9339, "longitude": 47.5517},
+    {"id": 23, "name": "Itaosy", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9589, "longitude": 47.5047},
+    {"id": 24, "name": "Soalandy", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": None, "longitude": None},
+    {"id": 25, "name": "Soavina", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.8558, "longitude": 47.5233},
+    {"id": 26, "name": "Tanjombato", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.9242, "longitude": 47.4942},
+    {"id": 27, "name": "Tsiafahy", "districtName": "Antananarivo-Atsimondrano", "regionName": "Analamanga", "latitude": -18.8797, "longitude": 47.4931},
+    # District Antananarivo-Avaradrano (16 communes)
+    {"id": 28, "name": "Alasora", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": -18.9306, "longitude": 47.5489},
+    {"id": 29, "name": "Ambohidrabiby", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": -18.8722, "longitude": 47.5125},
+    {"id": 30, "name": "Ambohimalaza Miray", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": -18.8897, "longitude": 47.6244},
+    {"id": 31, "name": "Ambohimanambola", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": None, "longitude": None},
+    {"id": 32, "name": "Ambohimanga Rova", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": -18.7608, "longitude": 47.5628},
+    {"id": 33, "name": "Ambohimangakely", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": -18.8847, "longitude": 47.5847},
+    {"id": 34, "name": "Anjeva Gara", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": None, "longitude": None},
+    {"id": 35, "name": "Ankadikely Ilafy", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": -18.8536, "longitude": 47.5614},
+    {"id": 36, "name": "Ankadinandriana", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": None, "longitude": None},
+    {"id": 37, "name": "Anosy Avaratra", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": None, "longitude": None},
+    {"id": 38, "name": "Fieferana", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": None, "longitude": None},
+    {"id": 39, "name": "Manandriana", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": -18.8956, "longitude": 47.5325},
+    {"id": 40, "name": "Masindray", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": None, "longitude": None},
+    {"id": 41, "name": "Sabotsy Namehana", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": -18.8369, "longitude": 47.5403},
+    {"id": 42, "name": "Talata Volonondry", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": None, "longitude": None},
+    {"id": 43, "name": "Viliahazo", "districtName": "Antananarivo-Avaradrano", "regionName": "Analamanga", "latitude": None, "longitude": None},
+    # District Antsirabe I (Vakinankaratra)
+    {"id": 44, "name": "Antsirabe I", "districtName": "Antsirabe I", "regionName": "Vakinankaratra", "latitude": -19.8659, "longitude": 47.0333},
+]
+
 FOKONTANY = [
     {"id": 1, "name": "Ambohijatovo", "communeName": "Antananarivo-Renivohitra", "districtName": "Antananarivo-Renivohitra", "regionName": "Analamanga", "latitude": -18.9068, "longitude": 47.5272, "addressNote": "Près du marché d'Ambohijatovo, 1er arrondissement.", "openingHours": "Lun–Ven : 8h00 – 12h00 / 14h00 – 17h00"},
     {"id": 2, "name": "Analakely", "communeName": "Antananarivo-Renivohitra", "districtName": "Antananarivo-Renivohitra", "regionName": "Analamanga", "latitude": -18.9044, "longitude": 47.5186, "addressNote": "Centre-ville, près de la gare Soarano.", "openingHours": "Lun–Sam : 8h00 – 12h00 / 14h00 – 16h30"},
@@ -158,17 +209,28 @@ SEED_DATA = {
     "procedure": PROCEDURES,
     "document_requirement": DOCUMENT_REQUIREMENTS,
     "fokontany": FOKONTANY,
+    "commune": COMMUNES,
 }
 
 
 def find_schema_file():
     if not os.path.isdir(SCHEMAS_DIR):
         sys.exit("Schema export directory not found: %s\nRun `gradlew :app:kspDebugKotlin` first." % SCHEMAS_DIR)
+
+    def version_key(name):
+        try:
+            return int(os.path.splitext(name)[0])
+        except ValueError:
+            return 0
+
+    candidates = []
     for root, _dirs, files in os.walk(SCHEMAS_DIR):
-        for name in sorted(files):
-            if name.endswith(".json"):
-                return os.path.join(root, name)
-    sys.exit("No Room schema JSON found under %s. Run `gradlew :app:kspDebugKotlin` first." % SCHEMAS_DIR)
+        candidates.extend((version_key(name), os.path.join(root, name)) for name in files if name.endswith(".json"))
+    if not candidates:
+        sys.exit("No Room schema JSON found under %s. Run `gradlew :app:kspDebugKotlin` first." % SCHEMAS_DIR)
+
+    # Return the highest exported schema version (the current one).
+    return max(candidates, key=lambda item: item[0])[1]
 
 
 def quote_ident(identifier):
@@ -230,6 +292,8 @@ def main():
         document_count = cursor.fetchone()[0]
         cursor.execute("SELECT COUNT(*) FROM fokontany")
         fokontany_count = cursor.fetchone()[0]
+        cursor.execute("SELECT COUNT(*) FROM commune")
+        commune_count = cursor.fetchone()[0]
     finally:
         conn.close()
 
@@ -238,6 +302,7 @@ def main():
     print("  procedures     : %d" % procedure_count)
     print("  requirements   : %d" % document_count)
     print("  fokontany      : %d" % fokontany_count)
+    print("  communes       : %d" % commune_count)
 
 
 if __name__ == "__main__":

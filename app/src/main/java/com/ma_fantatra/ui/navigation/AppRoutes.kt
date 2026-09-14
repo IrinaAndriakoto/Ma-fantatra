@@ -9,4 +9,7 @@ data object ProceduresRoute
 data object DirectoryRoute
 
 @Serializable
+data object CommunesRoute
+
+@Serializable
 data class ProcedureDetailRoute(val procedureId: Long)

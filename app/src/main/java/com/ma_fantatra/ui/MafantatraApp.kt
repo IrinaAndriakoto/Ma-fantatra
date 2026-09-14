@@ -16,8 +16,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.ma_fantatra.R
+import com.ma_fantatra.ui.commune.CommunesScreen
 import com.ma_fantatra.ui.detail.ProcedureDetailScreen
 import com.ma_fantatra.ui.directory.DirectoryScreen
+import com.ma_fantatra.ui.navigation.CommunesRoute
 import com.ma_fantatra.ui.navigation.DirectoryRoute
 import com.ma_fantatra.ui.navigation.ProcedureDetailRoute
 import com.ma_fantatra.ui.navigation.ProceduresRoute
@@ -32,6 +34,7 @@ fun MafantatraApp() {
     val onProcedures = currentRoute == ProceduresRoute::class.qualifiedName ||
         currentRoute == ProcedureDetailRoute::class.qualifiedName
     val onDirectory = currentRoute == DirectoryRoute::class.qualifiedName
+    val onCommunes = currentRoute == CommunesRoute::class.qualifiedName
 
     NavigationSuiteScaffold(
         navigationSuiteItems = {
@@ -69,6 +72,23 @@ fun MafantatraApp() {
                     }
                 },
             )
+            item(
+                icon = {
+                    Icon(
+                        painterResource(R.drawable.ic_commune),
+                        contentDescription = stringResource(R.string.nav_communes),
+                    )
+                },
+                label = { Text(stringResource(R.string.nav_communes)) },
+                selected = onCommunes,
+                onClick = {
+                    navController.navigate(CommunesRoute) {
+                        popUpTo(navController.graph.findStartDestination().id) { saveState = true }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                },
+            )
         }
     ) {
         NavHost(
@@ -85,6 +105,9 @@ fun MafantatraApp() {
             }
             composable<DirectoryRoute> {
                 DirectoryScreen()
+            }
+            composable<CommunesRoute> {
+                CommunesScreen()
             }
             composable<ProcedureDetailRoute> {
                 ProcedureDetailScreen(onBack = { navController.popBackStack() })
