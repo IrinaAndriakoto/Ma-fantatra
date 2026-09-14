@@ -29,7 +29,7 @@ data class ChecklistUiState(
 @HiltViewModel
 class ProcedureDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    procedureRepository: ProcedureRepository,
+    private val procedureRepository: ProcedureRepository,
     private val checklistRepository: ChecklistRepository,
 ) : ViewModel() {
 
@@ -57,6 +57,10 @@ class ProcedureDetailViewModel @Inject constructor(
                 checked = document.id !in checklist.value.checkedDocumentIds,
             )
         }
+    }
+
+    init {
+        viewModelScope.launch { procedureRepository.refresh() }
     }
 
     private companion object {

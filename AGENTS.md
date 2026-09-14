@@ -21,16 +21,20 @@ Android app **Ma-fantatra** — single module `:app`, Jetpack Compose + Material
 
 ## Data pipeline (offline-first)
 
-- Room DB is pre-populated and shipped: `MafantatraDatabase` is built with `createFromAsset("ma_fantatra.db")` → file `app/src/main/assets/databases/ma_fantatra.db`.
-- The asset DB is **generated**, not hand-written: `python tools/build_db.py`. It re-creates the tables verbatim from the Room schema JSON exported at `app/schemas/com.ma_fantatra.data.local.MafantatraDatabase/1.json` (created by KSP via `ksp { arg("room.schemaLocation", ...) }`), so schema and asset never drift. Seed rows (procedures, document requirements, fokontany) live in the script.
-- Regenerate order when entities/DAO change: `.\gradlew :app:kspDebugKotlin` (exports new schema JSON) → `python tools/build_db.py` → add a migration or bump DB `version`.
+- Room DB is pre-populated with seed data on first install via `createFromAsset("ma_fantatra.db")` → file `app/src/main/assets/databases/ma_fantatra.db`.
+- The asset DB is **generated** from `tools/build_db.py` (Python) using the Room schema JSON exported at `app/schemas/`. Seed rows (procedures, document requirements, fokontany) live in the script.
+- **Backend API** (FastAPI, Python) in `backend/` is the source of truth. The app syncs data from it at startup (in ViewModel `init`) and via periodic WorkManager sync (every 6h when network is available).
+- Room serves as the **offline cache**: repositories read from Room (Flow), and refresh from the API when possible. If offline, the cache is used as-is.
+- Base URL for Retrofit: `http://10.0.2.2:8000/` (emulator localhost). Change for real device testing.
+- DB version is 2 (v1→v2 added `commune` table). Migration in `MafantatraDatabase.MIGRATION_1_2`.
 - Checklist state is persisted with DataStore Preferences (`checked_doc_<documentId>` keys), not in Room.
 
 ## Architecture
 
-- Package `com.ma_fantatra` split: `domain/` (models, repo interfaces — no Android deps), `data/` (Room entities/DAOs/DB, repos, DataStore), `di/` (Hilt modules), `ui/` (Compose screens + ViewModels per feature). Clean Arch + MVVM.
+- Package `com.ma_fantatra` split: `domain/` (models, repo interfaces — no Android deps), `data/` (Room entities/DAOs/DB, repos, DataStore, remote API), `di/` (Hilt modules), `ui/` (Compose screens + ViewModels per feature). Clean Arch + MVVM.
 - Dependency injection is Hilt (2.60.1, KSP). `@HiltViewModel` in viewModels; inject repo interfaces from `di/`.
 - Navigation is Navigation-Compose with type-safe `@Serializable` routes (`ui/navigation/AppRoutes.kt`). Top-level nav is `NavigationSuiteScaffold`; bottom-bar selection is computed from `destination.route == <Route>::class.qualifiedName` (do not use `hasRoute`/`hierarchy`, which do not resolve on this nav version).
+- **Offline-first**: Each ViewModel calls `repository.refresh()` in `init`. Repositories try to sync from the API, silently falling back to the Room cache on failure. `SyncWorker` (WorkManager) runs every 6h with network constraint for background sync.
 
 ## Conventions
 

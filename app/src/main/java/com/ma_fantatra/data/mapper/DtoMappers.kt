@@ -4,23 +4,22 @@ import com.ma_fantatra.data.local.entity.CommuneEntity
 import com.ma_fantatra.data.local.entity.DocumentRequirementEntity
 import com.ma_fantatra.data.local.entity.FokontanyEntity
 import com.ma_fantatra.data.local.entity.ProcedureEntity
-import com.ma_fantatra.domain.model.Commune
-import com.ma_fantatra.domain.model.DocumentRequirement
-import com.ma_fantatra.domain.model.Fokontany
-import com.ma_fantatra.domain.model.Procedure
-import com.ma_fantatra.domain.model.ProcedureCategory
+import com.ma_fantatra.data.remote.dto.CommuneDto
+import com.ma_fantatra.data.remote.dto.DocumentRequirementDto
+import com.ma_fantatra.data.remote.dto.FokontanyDto
+import com.ma_fantatra.data.remote.dto.ProcedureDto
 
-fun ProcedureEntity.toDomain(): Procedure = Procedure(
+fun ProcedureDto.toEntity(): ProcedureEntity = ProcedureEntity(
     id = id,
     title = title,
-    category = ProcedureCategory.fromStorage(category),
+    category = category,
     cost = cost,
     processingTime = processingTime,
     description = description,
     instructions = instructions,
 )
 
-fun DocumentRequirementEntity.toDomain(): DocumentRequirement = DocumentRequirement(
+fun DocumentRequirementDto.toEntity(procedureId: Long): DocumentRequirementEntity = DocumentRequirementEntity(
     id = id,
     procedureId = procedureId,
     title = title,
@@ -28,7 +27,7 @@ fun DocumentRequirementEntity.toDomain(): DocumentRequirement = DocumentRequirem
     note = note,
 )
 
-fun FokontanyEntity.toDomain(): Fokontany = Fokontany(
+fun FokontanyDto.toEntity(): FokontanyEntity = FokontanyEntity(
     id = id,
     name = name,
     communeName = communeName,
@@ -40,7 +39,7 @@ fun FokontanyEntity.toDomain(): Fokontany = Fokontany(
     openingHours = openingHours,
 )
 
-fun CommuneEntity.toDomain(): Commune = Commune(
+fun CommuneDto.toEntity(): CommuneEntity = CommuneEntity(
     id = id,
     name = name,
     districtName = districtName,

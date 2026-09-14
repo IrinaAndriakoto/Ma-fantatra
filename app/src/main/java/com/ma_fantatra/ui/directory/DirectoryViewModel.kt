@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 data class DirectorySection(
     val region: String,
@@ -18,7 +19,7 @@ data class DirectorySection(
 
 @HiltViewModel
 class DirectoryViewModel @Inject constructor(
-    repository: FokontanyRepository,
+    private val repository: FokontanyRepository,
 ) : ViewModel() {
 
     val sections: StateFlow<List<DirectorySection>> = repository.observeAll()
@@ -28,4 +29,8 @@ class DirectoryViewModel @Inject constructor(
                 .map { (region, items) -> DirectorySection(region = region, items = items) }
         }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000L), emptyList())
+
+    init {
+        viewModelScope.launch { repository.refresh() }
+    }
 }

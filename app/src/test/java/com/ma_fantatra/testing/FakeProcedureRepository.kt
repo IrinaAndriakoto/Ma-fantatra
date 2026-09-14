@@ -18,6 +18,8 @@ class FakeProcedureRepository(
 
     override fun observeRequirements(procedureId: Long): Flow<List<DocumentRequirement>> =
         flowOf(requirementsByProcedure[procedureId].orEmpty())
+
+    override suspend fun refresh() { /* no-op in tests */ }
 }
 
 fun sampleProcedures(): List<Procedure> = listOf(

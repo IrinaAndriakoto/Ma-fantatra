@@ -29,3 +29,12 @@ data class Fokontany(
     val addressNote: String?,
     val openingHours: String?,
 )
+
+data class Commune(
+    val id: Long,
+    val name: String,
+    val districtName: String,
+    val regionName: String,
+    val latitude: Double?,
+    val longitude: Double?,
+)

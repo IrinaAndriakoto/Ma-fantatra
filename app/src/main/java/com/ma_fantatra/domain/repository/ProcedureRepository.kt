@@ -8,4 +8,5 @@ interface ProcedureRepository {
     fun observeAll(): Flow<List<Procedure>>
     fun observeById(id: Long): Flow<Procedure?>
     fun observeRequirements(procedureId: Long): Flow<List<DocumentRequirement>>
+    suspend fun refresh()
 }
