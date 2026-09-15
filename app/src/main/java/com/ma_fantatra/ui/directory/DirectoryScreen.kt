@@ -23,6 +23,7 @@ import com.ma_fantatra.domain.model.Fokontany
 
 @Composable
 fun DirectoryScreen(
+    onFokontanyClick: (Long) -> Unit,
     viewModel: DirectoryViewModel = hiltViewModel(),
 ) {
     val sections by viewModel.sections.collectAsState()
@@ -51,15 +52,24 @@ fun DirectoryScreen(
                 )
             }
             items(section.items, key = { it.id }) { fokontany ->
-                FokontanyCard(fokontany = fokontany)
+                FokontanyCard(
+                    fokontany = fokontany,
+                    onClick = { onFokontanyClick(fokontany.id) },
+                )
             }
         }
     }
 }
 
 @Composable
-private fun FokontanyCard(fokontany: Fokontany) {
-    Card(modifier = Modifier.fillMaxWidth()) {
+private fun FokontanyCard(
+    fokontany: Fokontany,
+    onClick: () -> Unit,
+) {
+    Card(
+        onClick = onClick,
+        modifier = Modifier.fillMaxWidth(),
+    ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = fokontany.name,

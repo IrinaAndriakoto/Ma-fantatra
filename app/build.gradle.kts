@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.androidx.work.runtime)
     implementation(libs.androidx.hilt.work)
+    implementation(libs.osmdroid.android)
     ksp(libs.hilt.compiler)
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.junit)

@@ -20,6 +20,9 @@ class RoomFokontanyRepository @Inject constructor(
     override fun observeAll(): Flow<List<Fokontany>> =
         fokontanyDao.observeAll().map { entities -> entities.map { it.toDomain() } }
 
+    override fun observeById(id: Long): Flow<Fokontany?> =
+        fokontanyDao.observeById(id).map { it?.toDomain() }
+
     override suspend fun refresh() {
         try {
             val fokontany = api.getFokontany()

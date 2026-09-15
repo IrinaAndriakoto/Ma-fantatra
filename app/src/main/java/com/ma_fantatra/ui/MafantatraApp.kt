@@ -16,11 +16,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.ma_fantatra.R
+import com.ma_fantatra.ui.commune.CommuneDetailScreen
 import com.ma_fantatra.ui.commune.CommunesScreen
 import com.ma_fantatra.ui.detail.ProcedureDetailScreen
 import com.ma_fantatra.ui.directory.DirectoryScreen
+import com.ma_fantatra.ui.directory.FokontanyDetailScreen
+import com.ma_fantatra.ui.navigation.CommuneDetailRoute
 import com.ma_fantatra.ui.navigation.CommunesRoute
 import com.ma_fantatra.ui.navigation.DirectoryRoute
+import com.ma_fantatra.ui.navigation.FokontanyDetailRoute
 import com.ma_fantatra.ui.navigation.ProcedureDetailRoute
 import com.ma_fantatra.ui.navigation.ProceduresRoute
 import com.ma_fantatra.ui.procedures.ProceduresScreen
@@ -33,8 +37,10 @@ fun MafantatraApp() {
 
     val onProcedures = currentRoute == ProceduresRoute::class.qualifiedName ||
         currentRoute == ProcedureDetailRoute::class.qualifiedName
-    val onDirectory = currentRoute == DirectoryRoute::class.qualifiedName
-    val onCommunes = currentRoute == CommunesRoute::class.qualifiedName
+    val onDirectory = currentRoute == DirectoryRoute::class.qualifiedName ||
+        currentRoute == FokontanyDetailRoute::class.qualifiedName
+    val onCommunes = currentRoute == CommunesRoute::class.qualifiedName ||
+        currentRoute == CommuneDetailRoute::class.qualifiedName
 
     NavigationSuiteScaffold(
         navigationSuiteItems = {
@@ -104,10 +110,24 @@ fun MafantatraApp() {
                 )
             }
             composable<DirectoryRoute> {
-                DirectoryScreen()
+                DirectoryScreen(
+                    onFokontanyClick = { fokontanyId ->
+                        navController.navigate(FokontanyDetailRoute(fokontanyId))
+                    },
+                )
             }
             composable<CommunesRoute> {
-                CommunesScreen()
+                CommunesScreen(
+                    onCommuneClick = { communeId ->
+                        navController.navigate(CommuneDetailRoute(communeId))
+                    },
+                )
+            }
+            composable<FokontanyDetailRoute> {
+                FokontanyDetailScreen(onBack = { navController.popBackStack() })
+            }
+            composable<CommuneDetailRoute> {
+                CommuneDetailScreen(onBack = { navController.popBackStack() })
             }
             composable<ProcedureDetailRoute> {
                 ProcedureDetailScreen(onBack = { navController.popBackStack() })

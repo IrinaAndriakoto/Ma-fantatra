@@ -23,6 +23,7 @@ import com.ma_fantatra.domain.model.Commune
 
 @Composable
 fun CommunesScreen(
+    onCommuneClick: (Long) -> Unit,
     viewModel: CommuneViewModel = hiltViewModel(),
 ) {
     val sections by viewModel.sections.collectAsState()
@@ -51,15 +52,24 @@ fun CommunesScreen(
                 )
             }
             items(section.items, key = { it.id }) { commune ->
-                CommuneCard(commune = commune)
+                CommuneCard(
+                    commune = commune,
+                    onClick = { onCommuneClick(commune.id) },
+                )
             }
         }
     }
 }
 
 @Composable
-private fun CommuneCard(commune: Commune) {
-    Card(modifier = Modifier.fillMaxWidth()) {
+private fun CommuneCard(
+    commune: Commune,
+    onClick: () -> Unit,
+) {
+    Card(
+        onClick = onClick,
+        modifier = Modifier.fillMaxWidth(),
+    ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = commune.name,

@@ -5,5 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface FokontanyRepository {
     fun observeAll(): Flow<List<Fokontany>>
+    fun observeById(id: Long): Flow<Fokontany?>
     suspend fun refresh()
 }

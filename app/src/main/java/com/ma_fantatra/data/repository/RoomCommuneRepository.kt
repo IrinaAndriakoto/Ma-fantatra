@@ -20,6 +20,9 @@ class RoomCommuneRepository @Inject constructor(
     override fun observeAll(): Flow<List<Commune>> =
         communeDao.observeAll().map { entities -> entities.map { it.toDomain() } }
 
+    override fun observeById(id: Long): Flow<Commune?> =
+        communeDao.observeById(id).map { it?.toDomain() }
+
     override suspend fun refresh() {
         try {
             val communes = api.getCommunes()

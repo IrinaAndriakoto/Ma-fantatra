@@ -13,3 +13,9 @@ data object CommunesRoute
 
 @Serializable
 data class ProcedureDetailRoute(val procedureId: Long)
+
+@Serializable
+data class CommuneDetailRoute(val communeId: Long)
+
+@Serializable
+data class FokontanyDetailRoute(val fokontanyId: Long)

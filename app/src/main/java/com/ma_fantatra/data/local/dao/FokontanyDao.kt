@@ -11,6 +11,9 @@ interface FokontanyDao {
     @Query("SELECT * FROM fokontany ORDER BY regionName, districtName, communeName, name COLLATE NOCASE")
     fun observeAll(): Flow<List<FokontanyEntity>>
 
+    @Query("SELECT * FROM fokontany WHERE id = :id")
+    fun observeById(id: Long): Flow<FokontanyEntity?>
+
     @Upsert
     suspend fun upsertAll(fokontany: List<FokontanyEntity>)
 }

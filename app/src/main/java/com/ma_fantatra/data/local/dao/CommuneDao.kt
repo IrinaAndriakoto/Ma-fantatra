@@ -11,6 +11,9 @@ interface CommuneDao {
     @Query("SELECT * FROM commune ORDER BY regionName, districtName, name COLLATE NOCASE")
     fun observeAll(): Flow<List<CommuneEntity>>
 
+    @Query("SELECT * FROM commune WHERE id = :id")
+    fun observeById(id: Long): Flow<CommuneEntity?>
+
     @Upsert
     suspend fun upsertAll(communes: List<CommuneEntity>)
 }
