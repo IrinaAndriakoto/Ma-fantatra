@@ -116,15 +116,15 @@ fun MafantatraApp() {
                     },
                 )
             }
+            composable<FokontanyDetailRoute> {
+                FokontanyDetailScreen(onBack = { navController.popBackStack() })
+            }
             composable<CommunesRoute> {
                 CommunesScreen(
                     onCommuneClick = { communeId ->
                         navController.navigate(CommuneDetailRoute(communeId))
                     },
                 )
-            }
-            composable<FokontanyDetailRoute> {
-                FokontanyDetailScreen(onBack = { navController.popBackStack() })
             }
             composable<CommuneDetailRoute> {
                 CommuneDetailScreen(onBack = { navController.popBackStack() })

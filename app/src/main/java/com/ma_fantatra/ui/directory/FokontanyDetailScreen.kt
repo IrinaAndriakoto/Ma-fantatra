@@ -3,7 +3,6 @@ package com.ma_fantatra.ui.directory
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -30,6 +29,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.ma_fantatra.R
 import com.ma_fantatra.ui.components.LocationMap
+import com.ma_fantatra.ui.theme.Spacing
+import com.ma_fantatra.ui.theme.detailPadding
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -69,34 +70,34 @@ fun FokontanyDetailScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                contentPadding = detailPadding(),
+                verticalArrangement = Arrangement.spacedBy(Spacing.md),
             ) {
                 item {
                     Card(modifier = Modifier.fillMaxWidth()) {
-                        Column(modifier = Modifier.padding(16.dp)) {
+                        Column(modifier = Modifier.padding(Spacing.lg)) {
                             Text(
                                 text = data.name,
-                                style = MaterialTheme.typography.headlineSmall,
+                                style = MaterialTheme.typography.titleLarge,
                             )
                             Text(
                                 text = "${data.communeName} · ${data.districtName} · ${data.regionName}",
                                 style = MaterialTheme.typography.bodyLarge,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.padding(top = 4.dp),
+                                modifier = Modifier.padding(top = Spacing.xs),
                             )
                             data.openingHours?.let { hours ->
                                 Text(
                                     text = "${stringResource(R.string.opening_hours_label)} : $hours",
                                     style = MaterialTheme.typography.bodyMedium,
-                                    modifier = Modifier.padding(top = 12.dp),
+                                    modifier = Modifier.padding(top = Spacing.md),
                                 )
                             }
                             data.addressNote?.let { address ->
                                 Text(
                                     text = "${stringResource(R.string.address_label)} : $address",
                                     style = MaterialTheme.typography.bodyMedium,
-                                    modifier = Modifier.padding(top = 4.dp),
+                                    modifier = Modifier.padding(top = Spacing.xs),
                                 )
                             }
                         }

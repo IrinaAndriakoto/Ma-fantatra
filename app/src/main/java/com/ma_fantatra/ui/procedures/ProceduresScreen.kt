@@ -26,6 +26,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.ma_fantatra.R
 import com.ma_fantatra.domain.model.Procedure
+import com.ma_fantatra.ui.theme.Spacing
+import com.ma_fantatra.ui.theme.screenPadding
 
 @Composable
 fun ProceduresScreen(
@@ -42,7 +44,7 @@ fun ProceduresScreen(
             onValueChange = viewModel::onQueryChanged,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 8.dp),
+                .padding(horizontal = Spacing.lg, vertical = Spacing.md),
             placeholder = { Text(stringResource(R.string.search_hint)) },
             singleLine = true,
         )
@@ -51,8 +53,8 @@ fun ProceduresScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .horizontalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                .padding(horizontal = Spacing.lg),
+            horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
         ) {
             FilterChip(
                 selected = selectedCategory == null,
@@ -73,14 +75,14 @@ fun ProceduresScreen(
                 Text(
                     text = stringResource(R.string.empty_results),
                     style = MaterialTheme.typography.bodyLarge,
-                    modifier = Modifier.padding(24.dp),
+                    modifier = Modifier.padding(Spacing.xxl),
                 )
             }
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                contentPadding = screenPadding(),
+                verticalArrangement = Arrangement.spacedBy(Spacing.sm),
             ) {
                 items(procedures, key = { it.id }) { procedure ->
                     ProcedureCard(procedure = procedure, onClick = { onProcedureClick(procedure.id) })
@@ -96,7 +98,7 @@ private fun ProcedureCard(
     onClick: () -> Unit,
 ) {
     Card(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(Spacing.lg)) {
             Text(
                 text = procedure.title,
                 style = MaterialTheme.typography.titleMedium,
@@ -105,16 +107,17 @@ private fun ProcedureCard(
                 text = procedure.category.label,
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(top = 4.dp),
+                modifier = Modifier.padding(top = Spacing.xs),
             )
             Text(
                 text = stringResource(R.string.cost_label) + " : ${procedure.cost}",
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(top = 8.dp),
+                modifier = Modifier.padding(top = Spacing.md),
             )
             Text(
                 text = stringResource(R.string.processing_time_label) + " : ${procedure.processingTime}",
                 style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }

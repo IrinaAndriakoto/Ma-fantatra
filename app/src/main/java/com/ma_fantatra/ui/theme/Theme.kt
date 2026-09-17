@@ -1,6 +1,5 @@
 package com.ma_fantatra.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -9,35 +8,48 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = DarkTealPrimary,
+    onPrimary = DarkTealOnPrimary,
+    primaryContainer = DarkTealPrimaryContainer,
+    onPrimaryContainer = DarkTealOnPrimaryContainer,
+    secondary = DarkSlateSecondary,
+    onSecondary = DarkSlateOnSecondary,
+    secondaryContainer = DarkSlateSecondaryContainer,
+    onSecondaryContainer = DarkSlateOnSecondaryContainer,
+    tertiary = DarkSandTertiary,
+    onTertiary = DarkSandOnTertiary,
+    tertiaryContainer = DarkSandTertiaryContainer,
+    onTertiaryContainer = DarkSandOnTertiaryContainer,
+    background = Color(0xFF101413),
+    surface = Color(0xFF101413),
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = TealPrimary,
+    onPrimary = TealOnPrimary,
+    primaryContainer = TealPrimaryContainer,
+    onPrimaryContainer = TealOnPrimaryContainer,
+    secondary = SlateSecondary,
+    onSecondary = SlateOnSecondary,
+    secondaryContainer = SlateSecondaryContainer,
+    onSecondaryContainer = SlateOnSecondaryContainer,
+    tertiary = SandTertiary,
+    onTertiary = SandOnTertiary,
+    tertiaryContainer = SandTertiaryContainer,
+    onTertiaryContainer = SandOnTertiaryContainer,
+    background = Color(0xFFFAFDFB),
+    surface = Color(0xFFFAFDFB),
 )
 
 @Composable
 fun MafantatraTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    // Dynamic color est disponible sur Android 12+, mais l'app impose sa palette teal.
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

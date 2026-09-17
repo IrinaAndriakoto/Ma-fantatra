@@ -2,7 +2,6 @@ package com.ma_fantatra.ui.commune
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,10 +15,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.ma_fantatra.R
 import com.ma_fantatra.domain.model.Commune
+import com.ma_fantatra.ui.theme.Spacing
+import com.ma_fantatra.ui.theme.screenPadding
 
 @Composable
 fun CommunesScreen(
@@ -30,26 +30,21 @@ fun CommunesScreen(
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        contentPadding = screenPadding(),
+        verticalArrangement = Arrangement.spacedBy(Spacing.sm),
     ) {
         if (sections.isEmpty()) {
             item {
                 Text(
                     text = stringResource(R.string.communes_empty),
                     style = MaterialTheme.typography.bodyLarge,
-                    modifier = Modifier.padding(24.dp),
+                    modifier = Modifier.padding(Spacing.xxl),
                 )
             }
         }
         sections.forEach { section ->
             item(key = "header_${section.district}") {
-                Text(
-                    text = section.district,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.padding(top = 8.dp),
-                )
+                SectionHeader(text = section.district)
             }
             items(section.items, key = { it.id }) { commune ->
                 CommuneCard(
@@ -70,7 +65,7 @@ private fun CommuneCard(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(Spacing.lg)) {
             Text(
                 text = commune.name,
                 style = MaterialTheme.typography.titleMedium,
@@ -78,8 +73,19 @@ private fun CommuneCard(
             Text(
                 text = "${commune.districtName} · ${commune.regionName}",
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(top = 4.dp),
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = Spacing.xs),
             )
         }
     }
+}
+
+@Composable
+internal fun SectionHeader(text: String) {
+    Text(
+        text = text,
+        style = MaterialTheme.typography.titleMedium,
+        color = MaterialTheme.colorScheme.primary,
+        modifier = Modifier.padding(top = Spacing.lg, bottom = Spacing.xs),
+    )
 }
