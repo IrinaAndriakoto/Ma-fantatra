@@ -2,7 +2,6 @@ package com.ma_fantatra.ui.directory
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,10 +15,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.ma_fantatra.R
 import com.ma_fantatra.domain.model.Fokontany
+import com.ma_fantatra.ui.commune.SectionHeader
+import com.ma_fantatra.ui.theme.Spacing
+import com.ma_fantatra.ui.theme.screenPadding
 
 @Composable
 fun DirectoryScreen(
@@ -30,26 +31,21 @@ fun DirectoryScreen(
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        contentPadding = screenPadding(),
+        verticalArrangement = Arrangement.spacedBy(Spacing.sm),
     ) {
         if (sections.isEmpty()) {
             item {
                 Text(
                     text = stringResource(R.string.directory_empty),
                     style = MaterialTheme.typography.bodyLarge,
-                    modifier = Modifier.padding(24.dp),
+                    modifier = Modifier.padding(Spacing.xxl),
                 )
             }
         }
         sections.forEach { section ->
             item(key = "header_${section.region}") {
-                Text(
-                    text = section.region,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.padding(top = 8.dp),
-                )
+                SectionHeader(text = section.region)
             }
             items(section.items, key = { it.id }) { fokontany ->
                 FokontanyCard(
@@ -70,7 +66,7 @@ private fun FokontanyCard(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(Spacing.lg)) {
             Text(
                 text = fokontany.name,
                 style = MaterialTheme.typography.titleMedium,
@@ -78,13 +74,14 @@ private fun FokontanyCard(
             Text(
                 text = "${fokontany.communeName} · ${fokontany.districtName}",
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(top = 4.dp),
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = Spacing.xs),
             )
             fokontany.openingHours?.let { hours ->
                 Text(
                     text = "${stringResource(R.string.opening_hours_label)} : $hours",
                     style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(top = 8.dp),
+                    modifier = Modifier.padding(top = Spacing.md),
                 )
             }
             fokontany.addressNote?.let { address ->
@@ -92,7 +89,7 @@ private fun FokontanyCard(
                     text = "${stringResource(R.string.address_label)} : $address",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(top = 4.dp),
+                    modifier = Modifier.padding(top = Spacing.xs),
                 )
             }
         }

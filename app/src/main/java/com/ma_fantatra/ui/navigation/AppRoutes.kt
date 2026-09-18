@@ -8,11 +8,12 @@ data object ProceduresRoute
 @Serializable
 data object DirectoryRoute
 
-@Serializable
-data object CommunesRoute
 
 @Serializable
 data class ProcedureDetailRoute(val procedureId: Long)
+
+@Serializable
+data object CommunesRoute
 
 @Serializable
 data class CommuneDetailRoute(val communeId: Long)

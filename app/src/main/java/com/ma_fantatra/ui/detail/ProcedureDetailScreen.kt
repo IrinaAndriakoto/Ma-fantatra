@@ -31,10 +31,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.ma_fantatra.R
 import com.ma_fantatra.domain.model.DocumentRequirement
+import com.ma_fantatra.ui.theme.Spacing
+import com.ma_fantatra.ui.theme.detailPadding
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -74,8 +75,8 @@ fun ProcedureDetailScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding),
-                contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                contentPadding = detailPadding(),
+                verticalArrangement = Arrangement.spacedBy(Spacing.md),
             ) {
                 item {
                     ProcedureSummary(
@@ -111,20 +112,20 @@ private fun ProcedureSummary(
     processingTime: String,
 ) {
     Card(modifier = Modifier.fillMaxWidth()) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(Spacing.lg)) {
             Text(
                 text = categoryLabel,
-                style = MaterialTheme.typography.labelLarge,
+                style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary,
             )
             Text(
                 text = title,
                 style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.padding(top = 4.dp),
+                modifier = Modifier.padding(top = Spacing.xs),
             )
-            HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
+            HorizontalDivider(modifier = Modifier.padding(vertical = Spacing.md))
             Text(text = description, style = MaterialTheme.typography.bodyMedium)
-            HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
+            HorizontalDivider(modifier = Modifier.padding(vertical = Spacing.md))
             Text(
                 text = "${stringResource(R.string.cost_label)} : $cost",
                 style = MaterialTheme.typography.titleSmall,
@@ -132,7 +133,7 @@ private fun ProcedureSummary(
             Text(
                 text = "${stringResource(R.string.processing_time_label)} : $processingTime",
                 style = MaterialTheme.typography.titleSmall,
-                modifier = Modifier.padding(top = 4.dp),
+                modifier = Modifier.padding(top = Spacing.xs),
             )
         }
     }
@@ -144,7 +145,7 @@ private fun ChecklistSection(
     onToggle: (DocumentRequirement) -> Unit,
 ) {
     Card(modifier = Modifier.fillMaxWidth()) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(Spacing.lg)) {
             Text(
                 text = stringResource(R.string.pieces_required_title),
                 style = MaterialTheme.typography.titleMedium,
@@ -154,15 +155,16 @@ private fun ChecklistSection(
                 progress = { progress.fraction },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 12.dp),
+                    .padding(top = Spacing.md),
             )
             Text(
                 text = stringResource(R.string.pieces_progress, progress.checkedCount, progress.totalCount),
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(top = 8.dp),
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = Spacing.sm),
             )
 
-            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+            HorizontalDivider(modifier = Modifier.padding(vertical = Spacing.sm))
 
             checklist.items.forEach { document ->
                 DocumentRow(
@@ -184,14 +186,14 @@ private fun DocumentRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp),
+            .padding(vertical = Spacing.sm),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Checkbox(
             checked = checked,
             onCheckedChange = { onCheckedChange() },
         )
-        Column(modifier = Modifier.padding(start = 8.dp)) {
+        Column(modifier = Modifier.padding(start = Spacing.sm)) {
             Text(
                 text = document.title,
                 style = MaterialTheme.typography.bodyMedium.let {
@@ -212,14 +214,14 @@ private fun DocumentRow(
                     MaterialTheme.colorScheme.surfaceVariant
                 },
                 shape = MaterialTheme.shapes.extraSmall,
-                modifier = Modifier.padding(top = 4.dp),
+                modifier = Modifier.padding(top = Spacing.xs),
             ) {
                 Text(
                     text = stringResource(
                         if (document.isMandatory) R.string.mandatory_badge else R.string.optional_badge,
                     ),
                     style = MaterialTheme.typography.labelSmall,
-                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
+                    modifier = Modifier.padding(horizontal = Spacing.sm, vertical = Spacing.xs),
                 )
             }
         }
@@ -229,7 +231,7 @@ private fun DocumentRow(
 @Composable
 private fun StepsSection(instructions: String) {
     Card(modifier = Modifier.fillMaxWidth()) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(Spacing.lg)) {
             Text(
                 text = stringResource(R.string.procedure_steps_title),
                 style = MaterialTheme.typography.titleMedium,
@@ -239,7 +241,7 @@ private fun StepsSection(instructions: String) {
                 Text(
                     text = step,
                     style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(vertical = 4.dp),
+                    modifier = Modifier.padding(vertical = Spacing.xs),
                 )
             }
         }

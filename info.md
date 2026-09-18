@@ -221,6 +221,12 @@ Chaque dossier `ui/feature/` contient :
 
 Ex: `DirectoryScreen.kt` affiche la liste ; `DirectoryViewModel.kt` gère les données et les appels réseau.
 
+### ui/theme/* — la charte visuelle (≈ styles SCSS / design tokens Angular)
+- **Color.kt** définit la palette fixe (teal/ardoise). **Theme.kt** l'applique via `MafantatraTheme` ; la couleur dynamique Material You est **désactivée** par défaut pour garder une identité constante.
+- **Type.kt** = la typographie Material 3.
+- **Spacing.kt** = l'échelle d'espacements (`Spacing.xs`→`xxl`) et les helpers `screenPadding()` / `detailPadding()`. Les écrans doivent utiliser ces helpers plutôt que des `dp` en dur ; le `bottom` est volontairement plus grand pour ne pas passer sous la barre de navigation.
+En Angular : l'équivalent de fichiers de tokens/variables SCSS partagés.
+
 ### di/* — l'injection de dépendances (≈ @Inject / @Bean Spring)
 Les modules Hilt qui disent à l'app : "quand quelqu'un demande un `CommuneRepository`, crée un `RoomCommuneRepository`".
 En Spring : comme les `@Configuration` classes avec des `@Bean` methods.
